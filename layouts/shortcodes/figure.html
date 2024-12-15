@@ -13,7 +13,7 @@
   <figure>
   {{- with $href }}<a href="{{ . }}" {{ with $target }}target="{{ . }}"{{ end }}>{{ end -}}
   {{- if findRE "^https?" $url.Scheme }}
-      <img class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" />
+      <img class="mx-auto my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" />
   {{- else }}
     {{- $resource := "" }}
     {{- if $.Page.Resources.GetMatch ($url.String) }}
@@ -24,13 +24,13 @@
     {{- with $resource }}
       {{- if or $disableImageOptimization (eq .MediaType.SubType "svg")}}
         <img
-          class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
+          class="mx-auto my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
           src="{{ .RelPermalink }}"
           alt="{{ $altText }}"
         />
       {{- else }}
         <img
-          class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
+          class="mx-auto my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
           srcset="
           {{ (.Resize "330x").RelPermalink }} 330w,
           {{ (.Resize "660x").RelPermalink }} 660w,
@@ -41,10 +41,10 @@
         />
       {{- end }}
     {{- else }}
-      <img class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" />
+      <img class="mx-auto my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" />
     {{- end }}
   {{- end }}
-  {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+  {{ with $caption }}<figcaption class="text-center">{{ . | markdownify }}</figcaption>{{ end }}
   {{ if $href }}</a>{{ end }}
   </figure>
 {{- end -}}
